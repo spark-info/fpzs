@@ -46,7 +46,9 @@ namespace fpzs
 
         private void menuAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("V1.0.0", "系统版本", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            FormAbout frm = new FormAbout();
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            OpenChild(frm);
         }
 
         private void menuExcelToXml_Click(object sender, EventArgs e)
