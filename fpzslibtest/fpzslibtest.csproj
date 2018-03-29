@@ -61,14 +61,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="testdata\开票数据模板-V1.0.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="testdata\开票数据模板-增专增普-V1.0.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="testdata\开票数据模板-电子-V1.0.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="testdata\开票数据模板-V1.0.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
+    <Content Include="testdata\开票数据模板-增专增普-V1.0.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\开票数据模板-电子-V1.0.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Choose>

@@ -36,6 +36,8 @@
             this.btnXmlFilepath = new System.Windows.Forms.Button();
             this.btnBuild = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbInvoiceType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -111,6 +113,24 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(24, 103);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 12);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "开具发票种类：";
+            // 
+            // cbInvoiceType
+            // 
+            this.cbInvoiceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbInvoiceType.FormattingEnabled = true;
+            this.cbInvoiceType.Location = new System.Drawing.Point(161, 94);
+            this.cbInvoiceType.Name = "cbInvoiceType";
+            this.cbInvoiceType.Size = new System.Drawing.Size(203, 20);
+            this.cbInvoiceType.TabIndex = 9;
+            // 
             // FormExcelToXml
             // 
             this.AcceptButton = this.btnBuild;
@@ -118,6 +138,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(650, 186);
+            this.Controls.Add(this.cbInvoiceType);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnBuild);
             this.Controls.Add(this.btnXmlFilepath);
@@ -128,6 +150,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormExcelToXml";
             this.Text = "批量开票";
+            this.Load += new System.EventHandler(this.FormExcelToXml_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +166,7 @@
         private System.Windows.Forms.Button btnXmlFilepath;
         private System.Windows.Forms.Button btnBuild;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbInvoiceType;
     }
 }

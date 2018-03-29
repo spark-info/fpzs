@@ -72,5 +72,13 @@ namespace fpzs
             child.MdiParent = this;
             child.Show();
         }
+
+        private void menuCustomizeExcel_Click(object sender, EventArgs e)
+        {
+            FormCustomizeExcel frm = new FormCustomizeExcel();
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.WindowState = FormWindowState.Maximized;
+            OpenChild(frm);
+        }
     }
 }

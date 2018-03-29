@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<business>
+  <REQUEST_COMMON_FPKJ>
+    <COMMON_FPKJ_FPT>
+      <FPQQLSH>1</FPQQLSH>
+      <KPLX>0</KPLX>
+      <XSF_NSRSBH />
+      <XSF_MC />
+      <XSF_DZDH />
+      <XSF_YHZH />
+      <GMF_NSRSBH>913101121234567890</GMF_NSRSBH>
+      <GMF_MC>上海A公司</GMF_MC>
+      <GMF_DZDH>上海市浦东新区</GMF_DZDH>
+      <GMF_YHZH>工行浦东支行</GMF_YHZH>
+      <KPR />
+      <SKR>张三</SKR>
+      <FHR>李四</FHR>
+      <YFP_DM />
+      <YFP_HM />
+      <JSHJ>23.4</JSHJ>
+      <HJJE>20</HJJE>
+      <HJSE>3.4</HJSE>
+      <BZ>订单编号001</BZ>
+      <BMB_BBH>V13.0</BMB_BBH>
+    </COMMON_FPKJ_FPT>
+    <COMMON_FPKJ_XMXXS>
+      <COMMON_FPKJ_XMXX>
+        <FPHXZ>0</FPHXZ>
+        <XMMC>华为手机</XMMC>
+        <DW>台</DW>
+        <GGXH>荣耀</GGXH>
+        <XMSL>10</XMSL>
+        <XMDJ>2</XMDJ>
+        <XMJE>20</XMJE>
+        <SL>0.17</SL>
+        <SE>3.4</SE>
+        <SPBM>1090505010000000000</SPBM>
+        <ZXBM></ZXBM>
+        <YHZCBS></YHZCBS>
+        <LSLBS></LSLBS>
+        <ZZSTSGL></ZZSTSGL>
+      </COMMON_FPKJ_XMXX>
+    </COMMON_FPKJ_XMXXS>
+  </REQUEST_COMMON_FPKJ>
+  <REQUEST_COMMON_FPKJ>
+    <COMMON_FPKJ_FPT>
+      <FPQQLSH>2</FPQQLSH>
+      <KPLX>0</KPLX>
+      <XSF_NSRSBH />
+      <XSF_MC />
+      <XSF_DZDH />
+      <XSF_YHZH />
+      <GMF_NSRSBH>913101151234567890</GMF_NSRSBH>
+      <GMF_MC>上海B公司</GMF_MC>
+      <GMF_DZDH>上海市静安区</GMF_DZDH>
+      <GMF_YHZH>农行静安支行</GMF_YHZH>
+      <KPR />
+      <SKR>王五</SKR>
+      <FHR>孙六</FHR>
+      <YFP_DM />
+      <YFP_HM />
+      <JSHJ>43.5</JSHJ>
+      <HJJE>40</HJJE>
+      <HJSE>3.5</HJSE>
+      <BZ>发货单号001</BZ>
+      <BMB_BBH>V13.0</BMB_BBH>
+    </COMMON_FPKJ_FPT>
+    <COMMON_FPKJ_XMXXS>
+      <COMMON_FPKJ_XMXX>
+        <FPHXZ>0</FPHXZ>
+        <XMMC>餐饮服务</XMMC>
+        <DW></DW>
+        <GGXH></GGXH>
+        <XMSL></XMSL>
+        <XMDJ></XMDJ>
+        <XMJE>30</XMJE>
+        <SL>0.06</SL>
+        <SE>1.8</SE>
+        <SPBM>3070401000000000000</SPBM>
+        <ZXBM></ZXBM>
+        <YHZCBS></YHZCBS>
+        <LSLBS></LSLBS>
+        <ZZSTSGL></ZZSTSGL>
+      </COMMON_FPKJ_XMXX>
+      <COMMON_FPKJ_XMXX>
+        <FPHXZ>0</FPHXZ>
+        <XMMC>玩具</XMMC>
+        <DW></DW>
+        <GGXH></GGXH>
+        <XMSL>1</XMSL>
+        <XMDJ>10</XMDJ>
+        <XMJE>10</XMJE>
+        <SL>0.17</SL>
+        <SE>1.7</SE>
+        <SPBM>1060408030000000000</SPBM>
+        <ZXBM></ZXBM>
+        <YHZCBS></YHZCBS>
+        <LSLBS></LSLBS>
+        <ZZSTSGL></ZZSTSGL>
+      </COMMON_FPKJ_XMXX>
+    </COMMON_FPKJ_XMXXS>
+  </REQUEST_COMMON_FPKJ>
+  <REQUEST_COMMON_FPKJ>
+    <COMMON_FPKJ_FPT>
+      <FPQQLSH>3</FPQQLSH>
+      <KPLX>0</KPLX>
+      <XSF_NSRSBH />
+      <XSF_MC />
+      <XSF_DZDH />
+      <XSF_YHZH />
+      <GMF_NSRSBH>91310115123456789M</GMF_NSRSBH>
+      <GMF_MC>上海C公司</GMF_MC>
+      <GMF_DZDH>上海市杨浦区</GMF_DZDH>
+      <GMF_YHZH>建行杨浦支行</GMF_YHZH>
+      <KPR />
+      <SKR>张明</SKR>
+      <FHR>赵钱</FHR>
+      <YFP_DM />
+      <YFP_HM />
+      <JSHJ>59.75</JSHJ>
+      <HJJE>51.07</HJJE>
+      <HJSE>8.68</HJSE>
+      <BZ></BZ>
+      <BMB_BBH>V13.0</BMB_BBH>
+    </COMMON_FPKJ_FPT>
+    <COMMON_FPKJ_XMXXS>
+      <COMMON_FPKJ_XMXX>
+        <FPHXZ>0</FPHXZ>
+        <XMMC>巧克力</XMMC>
+        <DW>箱</DW>
+        <GGXH>国产</GGXH>
+        <XMSL>2.5</XMSL>
+        <XMDJ>15.02</XMDJ>
+        <XMJE>37.55</XMJE>
+        <SL>0.17</SL>
+        <SE>6.38</SE>
+        <SPBM>1030202020000000000</SPBM>
+        <ZXBM></ZXBM>
+        <YHZCBS></YHZCBS>
+        <LSLBS></LSLBS>
+        <ZZSTSGL></ZZSTSGL>
+      </COMMON_FPKJ_XMXX>
+      <COMMON_FPKJ_XMXX>
+        <FPHXZ>0</FPHXZ>
+        <XMMC>冰淇淋</XMMC>
+        <DW>箱</DW>
+        <GGXH></GGXH>
+        <XMSL>1</XMSL>
+        <XMDJ>13.5234</XMDJ>
+        <XMJE>13.52</XMJE>
+        <SL>0.17</SL>
+        <SE>2.3</SE>
+        <SPBM>1030209010000000000</SPBM>
+        <ZXBM></ZXBM>
+        <YHZCBS></YHZCBS>
+        <LSLBS></LSLBS>
+        <ZZSTSGL></ZZSTSGL>
+      </COMMON_FPKJ_XMXX>
+    </COMMON_FPKJ_XMXXS>
+  </REQUEST_COMMON_FPKJ>
+</business>

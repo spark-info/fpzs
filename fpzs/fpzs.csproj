@@ -54,6 +54,12 @@
     <Compile Include="FormAbout.Designer.cs">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCustomizeExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCustomizeExcel.Designer.cs">
+      <DependentUpon>FormCustomizeExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExcelToXml.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     <Compile Include="VisualProperty.cs" />
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCustomizeExcel.resx">
+      <DependentUpon>FormCustomizeExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormExcelToXml.resx">
       <DependentUpon>FormExcelToXml.cs</DependentUpon>

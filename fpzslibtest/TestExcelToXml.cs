@@ -10,11 +10,11 @@ namespace fpzslibtest
     public class TestExcelToXml
     {
         [TestMethod]
-        public void ConvertExcelToXml()
+        public void ConvertExcelToXmlElectric()
         {
-            string xmlFilepathExpected = @"testdata\开票数据模板-V1.0.xml";
-            string excelFilepath = @"testdata\开票数据模板-V1.0.xlsx";
-            string xmlFilepath = @"testdata\开票数据模板-V1.0-tmp.xml";
+            string xmlFilepathExpected = @"testdata\开票数据模板-电子-V1.0.xml";
+            string excelFilepath = @"testdata\开票数据模板-电子-V1.0.xlsx";
+            string xmlFilepath = @"testdata\开票数据模板-电子-V1.0-tmp.xml";
 
             if(File.Exists(xmlFilepath))
             {
@@ -22,7 +22,28 @@ namespace fpzslibtest
             }
 
             ExcelToXml excelToXml = new ExcelToXml();
-            excelToXml.ConvertExcelToXml(excelFilepath, xmlFilepath);
+            excelToXml.ConvertExcelToXml(excelFilepath, xmlFilepath, InvoiceType.Electric);
+
+            string strXmlExpected = ReadTextFromFile(xmlFilepathExpected);
+            string strXml = ReadTextFromFile(xmlFilepath);
+            int pos = Diff(strXmlExpected, strXml);
+            Assert.AreEqual(strXmlExpected, strXml);
+        }
+
+        [TestMethod]
+        public void ConvertExcelToXmlSpecialAndCommon()
+        {
+            string xmlFilepathExpected = @"testdata\开票数据模板-增专增普-V1.0.xml";
+            string excelFilepath = @"testdata\开票数据模板-增专增普-V1.0.xlsx";
+            string xmlFilepath = @"testdata\开票数据模板-增专增普-V1.0-tmp.xml";
+
+            if (File.Exists(xmlFilepath))
+            {
+                File.Delete(xmlFilepath);
+            }
+
+            ExcelToXml excelToXml = new ExcelToXml();
+            excelToXml.ConvertExcelToXml(excelFilepath, xmlFilepath, InvoiceType.Special);
 
             string strXmlExpected = ReadTextFromFile(xmlFilepathExpected);
             string strXml = ReadTextFromFile(xmlFilepath);
@@ -49,7 +70,9 @@ namespace fpzslibtest
             int result = 0;
             for(int i=0; i<str1.Length; i++)
             {
-                if(!str1.Substring(i,1).Equals(str2.Substring(i,1)))
+                string c1 = str1.Substring(i, 1);
+                string c2 = str2.Substring(i, 1);
+                if(!c1.Equals(c2))
                 {
                     result = i;
                     break;

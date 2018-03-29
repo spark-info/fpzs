@@ -36,9 +36,10 @@ namespace fpzs
         {
             string excelFilepath = tbExcelFilepath.Text;
             string xmlFilepath = tbXmlFilepath.Text;
+            InvoiceType invoiceType = GetInvoiceType();
 
             ExcelToXml excelToXml = new ExcelToXml();
-            InvokeResult result = excelToXml.ConvertExcelToXml(excelFilepath, xmlFilepath);
+            InvokeResult result = excelToXml.ConvertExcelToXml(excelFilepath, xmlFilepath, invoiceType);
             if(result.State)
             {
                 MessageBox.Show("开票文件已生成：" + xmlFilepath, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -57,6 +58,38 @@ namespace fpzs
             {
                 tbExcelFilepath.Text = ofd.FileName;
             }
+        }
+
+        private InvoiceType GetInvoiceType()
+        {
+            InvoiceType invtype = InvoiceType.Electric;
+            string str = cbInvoiceType.Text;
+            if(str.Equals(Utility.GetEnumDescription(InvoiceType.Common)))
+            {
+                invtype = InvoiceType.Common;
+            }
+            else if(str.Equals(Utility.GetEnumDescription(InvoiceType.Special)))
+            {
+                invtype = InvoiceType.Special;
+            }
+            else if(str.Equals(Utility.GetEnumDescription(InvoiceType.Electric)))
+            {
+                invtype = InvoiceType.Electric;
+            }
+            else
+            {
+                throw new Exception("发票种类不存在！");
+            }
+
+            return invtype;
+        }
+
+        private void FormExcelToXml_Load(object sender, EventArgs e)
+        {
+            cbInvoiceType.Items.Add(Utility.GetEnumDescription(InvoiceType.Electric));
+            cbInvoiceType.Items.Add(Utility.GetEnumDescription(InvoiceType.Special));
+            cbInvoiceType.Items.Add(Utility.GetEnumDescription(InvoiceType.Common));
+            cbInvoiceType.SelectedIndex = 0;
         }
     }
 }

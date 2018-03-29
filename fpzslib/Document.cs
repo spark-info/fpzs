@@ -14,6 +14,7 @@ namespace fpzslib
         public string BuyerAddressTel { get; set; }
         public string BuyerBankAccountNo { get; set; }
         public string Memo { get; set; }
+        public string Kpr { get; set; }
         public string Checker { get; set; }
         public string Payee { get; set; }
         public string TaxCatalogVersion { get; set; }
@@ -26,6 +27,33 @@ namespace fpzslib
             {
                 return _items;
             }
+        }
+
+        public string SellerName { get; set; }
+        public string SellerTaxCode { get; set; }
+        public string SellerAddressTel { get; set; }
+        public string SellerBankAccountNo { get; set; }
+        public string OriginalInvoiceCode { get; set; }
+        public string OriginalInvoiceNo { get; set; }
+
+        public decimal TotalValue()
+        {
+            decimal value = 0;
+            foreach(DocumentItem m in _items)
+            {
+                value += m.Value;
+            }
+            return value;
+        }
+
+        public decimal TotalTax()
+        {
+            decimal tax = 0;
+            foreach(DocumentItem m in _items)
+            {
+                tax += m.Tax;
+            }
+            return tax;
         }
     }
 }

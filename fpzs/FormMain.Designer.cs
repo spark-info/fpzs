@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.开票管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDocumentManage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExcelToXml = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCustomizeExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -39,7 +41,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.开票管理ToolStripMenuItem,
+            this.menuDocumentManage,
+            this.menuOption,
             this.menuHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -47,20 +50,36 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 开票管理ToolStripMenuItem
+            // menuDocumentManage
             // 
-            this.开票管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuDocumentManage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuExcelToXml});
-            this.开票管理ToolStripMenuItem.Name = "开票管理ToolStripMenuItem";
-            this.开票管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.开票管理ToolStripMenuItem.Text = "开票管理";
+            this.menuDocumentManage.Name = "menuDocumentManage";
+            this.menuDocumentManage.Size = new System.Drawing.Size(68, 21);
+            this.menuDocumentManage.Text = "开票管理";
             // 
             // menuExcelToXml
             // 
             this.menuExcelToXml.Name = "menuExcelToXml";
-            this.menuExcelToXml.Size = new System.Drawing.Size(152, 22);
+            this.menuExcelToXml.Size = new System.Drawing.Size(124, 22);
             this.menuExcelToXml.Text = "批量开票";
             this.menuExcelToXml.Click += new System.EventHandler(this.menuExcelToXml_Click);
+            // 
+            // menuOption
+            // 
+            this.menuOption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuCustomizeExcel});
+            this.menuOption.Name = "menuOption";
+            this.menuOption.Size = new System.Drawing.Size(44, 21);
+            this.menuOption.Text = "设置";
+            this.menuOption.Visible = false;
+            // 
+            // menuCustomizeExcel
+            // 
+            this.menuCustomizeExcel.Name = "menuCustomizeExcel";
+            this.menuCustomizeExcel.Size = new System.Drawing.Size(208, 22);
+            this.menuCustomizeExcel.Text = "开票数据EXCEL格式设置";
+            this.menuCustomizeExcel.Click += new System.EventHandler(this.menuCustomizeExcel_Click);
             // 
             // menuHelp
             // 
@@ -73,7 +92,7 @@
             // menuAbout
             // 
             this.menuAbout.Name = "menuAbout";
-            this.menuAbout.Size = new System.Drawing.Size(152, 22);
+            this.menuAbout.Size = new System.Drawing.Size(100, 22);
             this.menuAbout.Text = "关于";
             this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
             // 
@@ -102,7 +121,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuHelp;
         private System.Windows.Forms.ToolStripMenuItem menuAbout;
-        private System.Windows.Forms.ToolStripMenuItem 开票管理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuDocumentManage;
         private System.Windows.Forms.ToolStripMenuItem menuExcelToXml;
+        private System.Windows.Forms.ToolStripMenuItem menuOption;
+        private System.Windows.Forms.ToolStripMenuItem menuCustomizeExcel;
     }
 }

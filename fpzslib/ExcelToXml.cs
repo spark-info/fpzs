@@ -17,13 +17,13 @@ namespace fpzslib
         /// </summary>
         /// <param name="excelFilepath"></param>
         /// <param name="xmlFilepath"></param>
-        public InvokeResult ConvertExcelToXml(string excelFilepath, string xmlFilepath){
+        public InvokeResult ConvertExcelToXml(string excelFilepath, string xmlFilepath, InvoiceType invType){
             try
             {
                 FileStream source = new FileStream(excelFilepath, FileMode.Open, FileAccess.Read);
                 Dictionary<string, List<DocumentExcel>> excelDocs = ReadFromExcel(excelFilepath);
                 List<Document> docs = BuildDocument(excelDocs);
-                BuildXml(docs, xmlFilepath);
+                BuildXml(docs, xmlFilepath, invType);
             }catch(Exception ex)
             {
                 return InvokeResult.Fail(ex.Message);
@@ -126,6 +126,7 @@ namespace fpzslib
                     item.Quantity = excelDoc.ItemQuantity;
                     item.Value = excelDoc.ItemValue;
                     item.TaxRate = excelDoc.ItemTaxRate;
+                    item.Tax = excelDoc.ItemTax;
                     item.TaxCatalogItemNo = excelDoc.TaxCatalogItemNo;
                     item.ItemNo = "";
                     item.IsFreeTax = false;
@@ -139,11 +140,24 @@ namespace fpzslib
             return result;
         }
 
-        private void BuildXml(List<Document> docs, string xmlFilepath)
+        private void BuildXml(List<Document> docs, string xmlFilepath, InvoiceType invType)
+        {
+            if(invType.Equals(InvoiceType.Special) || invType.Equals(InvoiceType.Common))
+            {
+                BuildXmlForSpecialAndCommon(docs, xmlFilepath);
+            }
+
+            if(invType.Equals(InvoiceType.Electric))
+            {
+                BuildXmlForElectric(docs, xmlFilepath);
+            }
+        }
+
+        private void BuildXmlForSpecialAndCommon(List<Document> docs, string xmlFilepath)
         {
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
-            using(XmlWriter writer = XmlWriter.Create(xmlFilepath, settings))
+            using (XmlWriter writer = XmlWriter.Create(xmlFilepath, settings))
             {
                 writer.WriteStartElement("Kp");
                 XmlWriteElement(writer, "Version", "2.0");
@@ -152,7 +166,7 @@ namespace fpzslib
                 XmlWriteElement(writer, "Zsl", Convert.ToString(docs.Count));
 
                 writer.WriteStartElement("Fpsj");
-                foreach(Document doc in docs)
+                foreach (Document doc in docs)
                 {
                     writer.WriteStartElement("Fp");
                     XmlWriteElement(writer, "Djh", doc.No);
@@ -168,20 +182,20 @@ namespace fpzslib
 
                     writer.WriteStartElement("Spxx");
                     int n = 1;
-                    foreach(DocumentItem item in doc.Items)
+                    foreach (DocumentItem item in doc.Items)
                     {
                         writer.WriteStartElement("Sph");
                         XmlWriteElement(writer, "Xh", Convert.ToString(n++));
                         XmlWriteElement(writer, "Spmc", item.Name);
                         XmlWriteElement(writer, "Ggxh", item.Spec);
                         XmlWriteElement(writer, "Jldw", item.Unit);
-                        XmlWriteElement(writer, "Spbm", item.TaxCatalogItemNo.PadRight(19,'0'));
+                        XmlWriteElement(writer, "Spbm", item.TaxCatalogItemNo.PadRight(19, '0'));
                         XmlWriteElement(writer, "Qyspbm", item.ItemNo);
                         XmlWriteElement(writer, "Syyhzcbz", item.IsFreeTax ? "1" : "");
                         XmlWriteElement(writer, "Lslbz", Utility.GetEnumDescription(item.ZeroTax));
                         XmlWriteElement(writer, "Yhzcsm", item.FreeTaxName);
                         string strPrice, strQuantity;
-                        if(item.Price == 0)
+                        if (item.Price == 0)
                         {
                             strPrice = "";
                             strQuantity = "";
@@ -206,6 +220,81 @@ namespace fpzslib
             }
         }
 
+        private void BuildXmlForElectric(List<Document> docs, string xmlFilepath)
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            using (XmlWriter writer = XmlWriter.Create(xmlFilepath, settings))
+            {
+                writer.WriteStartElement("business");
+                foreach (Document doc in docs)
+                {
+                    writer.WriteStartElement("REQUEST_COMMON_FPKJ");
+                    writer.WriteStartElement("COMMON_FPKJ_FPT");
+                    XmlWriteElement(writer, "FPQQLSH", doc.No);
+                    string kplx = "0";
+                    if(doc.TotalValue()<0)
+                    {
+                        kplx ="1";
+                    }
+                    XmlWriteElement(writer, "KPLX", kplx);
+                    XmlWriteElement(writer, "XSF_NSRSBH", doc.SellerTaxCode);
+                    XmlWriteElement(writer, "XSF_MC", doc.SellerName);
+                    XmlWriteElement(writer, "XSF_DZDH", doc.SellerAddressTel);
+                    XmlWriteElement(writer, "XSF_YHZH", doc.SellerBankAccountNo);
+                    XmlWriteElement(writer, "GMF_NSRSBH", doc.BuyerTaxCode);
+                    XmlWriteElement(writer, "GMF_MC", doc.BuyerName);
+                    XmlWriteElement(writer, "GMF_DZDH", doc.BuyerAddressTel);
+                    XmlWriteElement(writer, "GMF_YHZH", doc.BuyerBankAccountNo);
+                    XmlWriteElement(writer, "KPR", doc.Kpr);
+                    XmlWriteElement(writer, "SKR", doc.Payee);
+                    XmlWriteElement(writer, "FHR", doc.Checker);
+                    XmlWriteElement(writer, "YFP_DM", doc.OriginalInvoiceCode);
+                    XmlWriteElement(writer, "YFP_HM", doc.OriginalInvoiceNo);
+                    XmlWriteElement(writer, "JSHJ", Convert.ToString(doc.TotalValue()+doc.TotalTax()));
+                    XmlWriteElement(writer, "HJJE", Convert.ToString(doc.TotalValue()));
+                    XmlWriteElement(writer, "HJSE", Convert.ToString(doc.TotalTax()));
+                    XmlWriteElement(writer, "BZ", doc.Memo);
+                    XmlWriteElement(writer, "BMB_BBH", doc.TaxCatalogVersion);
+                    writer.WriteEndElement();//COMMON_FPKJ_FPT
+
+                    writer.WriteStartElement("COMMON_FPKJ_XMXXS");
+                    foreach (DocumentItem item in doc.Items)
+                    {
+                        writer.WriteStartElement("COMMON_FPKJ_XMXX");
+                        XmlWriteElement(writer, "FPHXZ", "0");
+                        XmlWriteElement(writer, "XMMC", item.Name);
+                        XmlWriteElement(writer, "DW", item.Unit);
+                        XmlWriteElement(writer, "GGXH", item.Spec);
+                        string strPrice, strQuantity;
+                        if (item.Price == 0)
+                        {
+                            strPrice = "";
+                            strQuantity = "";
+                        }
+                        else
+                        {
+                            strPrice = Convert.ToString(item.Price);
+                            strQuantity = Convert.ToString(item.Quantity);
+                        }
+                        XmlWriteElement(writer, "XMSL", strQuantity);
+                        XmlWriteElement(writer, "XMDJ", strPrice);
+                        XmlWriteElement(writer, "XMJE", Convert.ToString(item.Value));
+                        XmlWriteElement(writer, "SL", Convert.ToString(item.TaxRate));
+                        XmlWriteElement(writer, "SE", Convert.ToString(item.Tax));
+                        XmlWriteElement(writer, "SPBM", item.TaxCatalogItemNo.PadRight(19, '0'));
+                        XmlWriteElement(writer, "ZXBM", item.ItemNo);
+                        XmlWriteElement(writer, "YHZCBS", item.FreeTaxName);
+                        XmlWriteElement(writer, "LSLBS", Utility.GetEnumDescription(item.ZeroTax));
+                        XmlWriteElement(writer, "ZZSTSGL", "");
+                        writer.WriteEndElement();//COMMON_FPKJ_XMXX
+                    }
+                    writer.WriteEndElement();//COMMON_FPKJ_XMXXS
+                    writer.WriteEndElement();//REQUEST_COMMON_FPKJ
+                }
+                writer.WriteEndElement();//business
+            }
+        }
         private void XmlWriteElement(XmlWriter writer, string localName, string text)
         {
             writer.WriteStartElement(localName);
