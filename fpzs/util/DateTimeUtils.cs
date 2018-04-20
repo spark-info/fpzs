@@ -4,9 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace fpzs
+namespace fpzs.util
 {
-    class Utilities
+    class DateTimeUtils
     {
         public static DateTime ConvertToDateTime(string str)
         {

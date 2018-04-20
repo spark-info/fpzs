@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using fpzslib;
+using fpzs;
 using System.IO;
 using System.Text;
+using fpzs.bl;
 
 namespace fpzslibtest
 {

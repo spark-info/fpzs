@@ -1,4 +1,5 @@
-﻿using fpzslib;
+﻿using fpzs.bl;
+using fpzs.util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,15 +65,15 @@ namespace fpzs
         {
             InvoiceType invtype = InvoiceType.Electric;
             string str = cbInvoiceType.Text;
-            if(str.Equals(Utility.GetEnumDescription(InvoiceType.Common)))
+            if(str.Equals(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Common)))
             {
                 invtype = InvoiceType.Common;
             }
-            else if(str.Equals(Utility.GetEnumDescription(InvoiceType.Special)))
+            else if(str.Equals(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Special)))
             {
                 invtype = InvoiceType.Special;
             }
-            else if(str.Equals(Utility.GetEnumDescription(InvoiceType.Electric)))
+            else if(str.Equals(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Electric)))
             {
                 invtype = InvoiceType.Electric;
             }
@@ -86,9 +87,9 @@ namespace fpzs
 
         private void FormExcelToXml_Load(object sender, EventArgs e)
         {
-            cbInvoiceType.Items.Add(Utility.GetEnumDescription(InvoiceType.Electric));
-            cbInvoiceType.Items.Add(Utility.GetEnumDescription(InvoiceType.Special));
-            cbInvoiceType.Items.Add(Utility.GetEnumDescription(InvoiceType.Common));
+            cbInvoiceType.Items.Add(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Electric));
+            cbInvoiceType.Items.Add(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Special));
+            cbInvoiceType.Items.Add(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Common));
             cbInvoiceType.SelectedIndex = 0;
         }
     }

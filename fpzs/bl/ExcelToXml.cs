@@ -1,4 +1,5 @@
-﻿using NPOI.SS.UserModel;
+﻿using fpzs.util;
+using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace fpzslib
+namespace fpzs.bl
 {
     public class ExcelToXml
     {
@@ -192,7 +193,7 @@ namespace fpzslib
                         XmlWriteElement(writer, "Spbm", item.TaxCatalogItemNo.PadRight(19, '0'));
                         XmlWriteElement(writer, "Qyspbm", item.ItemNo);
                         XmlWriteElement(writer, "Syyhzcbz", item.IsFreeTax ? "1" : "");
-                        XmlWriteElement(writer, "Lslbz", Utility.GetEnumDescription(item.ZeroTax));
+                        XmlWriteElement(writer, "Lslbz", DescriptionAttributeUtils.GetEnumDescription(item.ZeroTax));
                         XmlWriteElement(writer, "Yhzcsm", item.FreeTaxName);
                         string strPrice, strQuantity;
                         if (item.Price == 0)
@@ -285,7 +286,7 @@ namespace fpzslib
                         XmlWriteElement(writer, "SPBM", item.TaxCatalogItemNo.PadRight(19, '0'));
                         XmlWriteElement(writer, "ZXBM", item.ItemNo);
                         XmlWriteElement(writer, "YHZCBS", item.FreeTaxName);
-                        XmlWriteElement(writer, "LSLBS", Utility.GetEnumDescription(item.ZeroTax));
+                        XmlWriteElement(writer, "LSLBS", DescriptionAttributeUtils.GetEnumDescription(item.ZeroTax));
                         XmlWriteElement(writer, "ZZSTSGL", "");
                         writer.WriteEndElement();//COMMON_FPKJ_XMXX
                     }

@@ -18,6 +18,7 @@ namespace fpzs
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //StartAutoUpdate();
+            App.Instance.Initialize();
             Application.Run(new FormMain());
         }
 
@@ -37,7 +38,6 @@ namespace fpzs
             {
                 MessageBox.Show("启动自动更新失败。\n" + ex.StackTrace,"发票助手");
             }
-            
         }
     }
 }

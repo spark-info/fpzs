@@ -21,12 +21,12 @@ namespace fpzs
         private void FormOptions_Load(object sender, EventArgs e)
         {
 
-            tbCertPassword.Text = AppConfig.Instance.CertPassword;
+            tbCertPassword.Text = App.Instance.GetConfigValue(App.KEY_CERT_PASSWORD);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            AppConfig.Instance.CertPassword = tbCertPassword.Text;
+            App.Instance.SetConfigValue(App.KEY_CERT_PASSWORD,tbCertPassword.Text);
             Close();
         }
        

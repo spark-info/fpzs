@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace fpzs
+namespace fpzs.util
 {
     [AttributeUsage(AttributeTargets.Property)]
     class ChineseNameAttribute : Attribute

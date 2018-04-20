@@ -5,9 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace fpzslib
+namespace fpzs.util
 {
-    public class Utility
+    public class DescriptionAttributeUtils
     {
         public static string GetEnumDescription(Enum obj)
         {
