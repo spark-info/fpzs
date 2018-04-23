@@ -33,6 +33,25 @@ namespace fpzs.dal
             return cmd.ExecuteReader();
         }
 
+        public bool ExecuteInsert(string sql, params SQLiteParameter[] ps)
+        {
+            SQLiteCommand cmd = conn.CreateCommand();
+            if (tr != null)
+                cmd.Transaction = tr;
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = sql;
+            cmd.Parameters.AddRange(ps);
+            int r = cmd.ExecuteNonQuery();
+            if (r == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void BeginTransaction()
         {
             tr = conn.BeginTransaction();

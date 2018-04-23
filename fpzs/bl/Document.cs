@@ -8,13 +8,15 @@ namespace fpzs.bl
 {
     public class Document
     {
+        public InvoiceType IssueInvoiceType { get; set; }
+        public DateTime ImportDate { get; set; }
         public string No { get; set; }
         public string BuyerName { get; set; }
         public string BuyerTaxCode { get; set; }
         public string BuyerAddressTel { get; set; }
         public string BuyerBankAccountNo { get; set; }
         public string Memo { get; set; }
-        public string Kpr { get; set; }
+        public string Maker { get; set; }
         public string Checker { get; set; }
         public string Payee { get; set; }
         public string TaxCatalogVersion { get; set; }
@@ -36,6 +38,19 @@ namespace fpzs.bl
         public string OriginalInvoiceCode { get; set; }
         public string OriginalInvoiceNo { get; set; }
 
+        public Document()
+        {
+            Maker = "";
+            Checker = "";
+            Payee = "";
+            SellerName = "";
+            SellerTaxCode = "";
+            SellerAddressTel = "";
+            SellerBankAccountNo = "";
+            Memo = "";
+            OriginalInvoiceCode = "";
+            OriginalInvoiceNo = "";
+        }
         public decimal TotalValue()
         {
             decimal value = 0;

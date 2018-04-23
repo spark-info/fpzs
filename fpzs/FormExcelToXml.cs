@@ -1,4 +1,5 @@
 ﻿using fpzs.bl;
+using fpzs.cl;
 using fpzs.util;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,20 @@ namespace fpzs
 {
     public partial class FormExcelToXml : Form
     {
+        private DocumentManager docMgr;
         public FormExcelToXml()
         {
             InitializeComponent();
         }
+        private void FormExcelToXml_Load(object sender, EventArgs e)
+        {
+            docMgr = new DocumentManager(App.Instance.GetSqliteHelper());
 
+            cbInvoiceType.Items.Add(InvoiceTypeWrapper.GetText(InvoiceType.Electric));
+            cbInvoiceType.Items.Add(InvoiceTypeWrapper.GetText(InvoiceType.Special));
+            cbInvoiceType.Items.Add(InvoiceTypeWrapper.GetText(InvoiceType.Common));
+            cbInvoiceType.SelectedIndex = 0;
+        }
         private void btnXmlFilepath_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -37,10 +47,13 @@ namespace fpzs
         {
             string excelFilepath = tbExcelFilepath.Text;
             string xmlFilepath = tbXmlFilepath.Text;
-            InvoiceType invoiceType = GetInvoiceType();
+            InvoiceType invoiceType = InvoiceTypeWrapper.TextOf(cbInvoiceType.Text);
 
-            ExcelToXml excelToXml = new ExcelToXml();
-            InvokeResult result = excelToXml.ConvertExcelToXml(excelFilepath, xmlFilepath, invoiceType);
+            Dictionary<string,List<DocumentExcel>> dict = docMgr.ParseExcel(excelFilepath);
+            List<Document> list = docMgr.ConvertToDocument(dict);
+            InvokeResult result = docMgr.SaveDocument(list);
+            //ExcelToXml excelToXml = new ExcelToXml();
+            //InvokeResult result = excelToXml.ConvertExcelToXml(excelFilepath, xmlFilepath, invoiceType);
             if(result.State)
             {
                 MessageBox.Show("开票文件已生成：" + xmlFilepath, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -59,38 +72,6 @@ namespace fpzs
             {
                 tbExcelFilepath.Text = ofd.FileName;
             }
-        }
-
-        private InvoiceType GetInvoiceType()
-        {
-            InvoiceType invtype = InvoiceType.Electric;
-            string str = cbInvoiceType.Text;
-            if(str.Equals(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Common)))
-            {
-                invtype = InvoiceType.Common;
-            }
-            else if(str.Equals(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Special)))
-            {
-                invtype = InvoiceType.Special;
-            }
-            else if(str.Equals(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Electric)))
-            {
-                invtype = InvoiceType.Electric;
-            }
-            else
-            {
-                throw new Exception("发票种类不存在！");
-            }
-
-            return invtype;
-        }
-
-        private void FormExcelToXml_Load(object sender, EventArgs e)
-        {
-            cbInvoiceType.Items.Add(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Electric));
-            cbInvoiceType.Items.Add(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Special));
-            cbInvoiceType.Items.Add(DescriptionAttributeUtils.GetEnumDescription(InvoiceType.Common));
-            cbInvoiceType.SelectedIndex = 0;
         }
     }
 }

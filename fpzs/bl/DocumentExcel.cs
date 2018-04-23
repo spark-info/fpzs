@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fpzs.bl
 {
-    class DocumentExcel
+    public class DocumentExcel
     {
         public string DocumentNo{get;set;}
         public string BuyerName{get;set;}

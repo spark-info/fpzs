@@ -42,6 +42,10 @@ namespace fpzs
             sqliteHelper = new SqliteHelper(dbPath, dbPassword);
         }
 
+        public SqliteHelper GetSqliteHelper()
+        {
+            return sqliteHelper;
+        }
         public string GetConfigValue(string keyName)
         {
             AppSettingsSection section = config.AppSettings;

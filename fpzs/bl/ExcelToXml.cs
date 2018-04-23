@@ -21,7 +21,6 @@ namespace fpzs.bl
         public InvokeResult ConvertExcelToXml(string excelFilepath, string xmlFilepath, InvoiceType invType){
             try
             {
-                FileStream source = new FileStream(excelFilepath, FileMode.Open, FileAccess.Read);
                 Dictionary<string, List<DocumentExcel>> excelDocs = ReadFromExcel(excelFilepath);
                 List<Document> docs = BuildDocument(excelDocs);
                 BuildXml(docs, xmlFilepath, invType);
@@ -32,7 +31,7 @@ namespace fpzs.bl
             return InvokeResult.SUCCESS;
         }
 
-        private Dictionary<string,List<DocumentExcel>> ReadFromExcel(string excelFilepath)
+        public Dictionary<string,List<DocumentExcel>> ReadFromExcel(string excelFilepath)
         {
             Dictionary<string,List<DocumentExcel>> result = new Dictionary<string,List<DocumentExcel>>();
             IWorkbook workbook;
@@ -247,7 +246,7 @@ namespace fpzs.bl
                     XmlWriteElement(writer, "GMF_MC", doc.BuyerName);
                     XmlWriteElement(writer, "GMF_DZDH", doc.BuyerAddressTel);
                     XmlWriteElement(writer, "GMF_YHZH", doc.BuyerBankAccountNo);
-                    XmlWriteElement(writer, "KPR", doc.Kpr);
+                    XmlWriteElement(writer, "KPR", doc.Maker);
                     XmlWriteElement(writer, "SKR", doc.Payee);
                     XmlWriteElement(writer, "FHR", doc.Checker);
                     XmlWriteElement(writer, "YFP_DM", doc.OriginalInvoiceCode);

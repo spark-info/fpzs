@@ -80,7 +80,9 @@
     <Compile Include="bl\DocumentItem.cs" />
     <Compile Include="bl\ExcelToXml.cs" />
     <Compile Include="bl\InvoiceType.cs" />
-    <Compile Include="bl\InvokeResult.cs" />
+    <Compile Include="cl\InvokeResult.cs" />
+    <Compile Include="cl\DocumentManager.cs" />
+    <Compile Include="dal\DocumentDAO.cs" />
     <Compile Include="util\DescriptionAttributeUtils.cs" />
     <Compile Include="bl\ZeroTax.cs" />
     <Compile Include="util\ChineseNameAttribute.cs" />
@@ -154,7 +156,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="fpzs.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
